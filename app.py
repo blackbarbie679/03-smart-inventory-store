@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect
 import sqlite3
 
-app = Flask(_name_)
+app = Flask(__name__)
 
 def init_db():
     conn = sqlite3.connect('database.db')
@@ -40,7 +40,6 @@ def init_db():
     
     conn.commit()
     conn.close()
-
 @app.route('/')
 def index():
     conn = sqlite3.connect('database.db')
@@ -65,6 +64,6 @@ def add_product():
         return redirect('/')
     return render_template('add_product.html')
 
-if _name_ == '_main_':
+if __name__ == '__main__':
     init_db()
     app.run(debug=True)
