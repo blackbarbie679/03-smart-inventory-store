@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smart Inventory Store</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>📦 Smart Inventory Store</h1>
+    <a href="/add">Add New Product</a>
+
+    <div class="products">
+        {% for product in products %}
+        <div class="product">
+            <h3>{{ product[1] }}</h3>
+            <p>Price: ${{ product[2] }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
