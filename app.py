@@ -13,6 +13,31 @@ def init_db():
             price REAL NOT NULL
         )
     ''')
+    # Check if table is empty
+    c.execute("SELECT COUNT(*) FROM products")
+    count = c.fetchone()[0]
+    
+    # If empty, insert sample products
+    if count == 0:
+        sample_products = [
+            ("Smart TV", 599.99),
+            ("Wireless Headphones", 99.99),
+            ("Bluetooth Speaker", 49.99),
+            ("Gaming Laptop", 1299.99),
+            ("Smartphone", 799.99),
+            ("Coffee Maker", 89.99),
+            ("Air Fryer", 129.99),
+            ("Electric Kettle", 39.99),
+            ("Blender", 59.99),
+            ("Toaster", 29.99),
+            ("Leather Wallet", 49.99),
+            ("Running Shoes", 119.99),
+            ("Sunglasses", 69.99),
+            ("Hoodie", 39.99),
+            ("Watch", 199.99)
+        ]
+        c.executemany("INSERT INTO products (name, price) VALUES (?, ?)", sample_products)
+    
     conn.commit()
     conn.close()
 
